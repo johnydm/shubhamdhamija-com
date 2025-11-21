@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Shubham Dhamija | Data and Analytics Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Portfolio of Shubham Dhamija, Data and Analytics professional and AI newsletter builder." />
+  <style>
+    :root {
+      --bg: #050816;
+      --bg-alt: #0b1020;
+      --card: #111827;
+      --accent: #38bdf8;
+      --accent-soft: rgba(56,189,248,0.15);
+      --text-main: #e5e7eb;
+      --text-muted: #9ca3af;
+      --border-subtle: #1f2933;
+      --radius-lg: 18px;
+      --shadow-soft: 0 18px 40px rgba(0,0,0,0.65);
+      --max-width: 960px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #111827 0, #020617 45%, #000 100%);
+      color: var(--text-main);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page {
+      min-height: 100vh;
+      padding: 32px 16px 64px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .shell {
+      width: 100%;
+      max-width: var(--max-width);
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 32px;
+      gap: 16px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-mark {
+      width: 36px;
+      height: 36px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 20%, #38bdf8, #1d4ed8 55%, #020617 100%);
+      box-shadow: 0 0 24px rgba(56,189,248,0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 18px;
+      color: white;
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .logo-text span:first-child {
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
+    .logo-text span:last-child {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    nav {
+      display: flex;
+      gap: 16px;
+      font-size: 14px;
+    }
+
+    nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      transition: all 0.15s ease;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+      border-color: rgba(148,163,184,0.5);
+      background: rgba(15,23,42,0.9);
+    }
+
+    main {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    /* Hero */
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1.4fr);
+      gap: 24px;
+      align-items: center;
+    }
+
+    @media (max-width: 800px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      nav {
+        align-self: flex-start;
+      }
+    }
+
+    .hero-text {
+      padding: 20px 24px;
+      border-radius: 24px;
+      border: 1px solid rgba(148,163,184,0.3);
+      background: radial-gradient(circle at top left, rgba(56,189,248,0.08) 0, rgba(15,23,42,0.9) 45%, rgba(15,23,42,1) 100%);
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.95);
+      border: 1px solid rgba(148,163,184,0.4);
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    .hero-pill-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 12px rgba(34,197,94,0.9);
+    }
+
+    .hero-title {
+      font-size: clamp(26px, 3vw, 32px);
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .hero-title span {
+      background: linear-gradient(120deg, #38bdf8, #a855f7);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 15px;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    .hero-body {
+      font-size: 14px;
+      color: #d1d5db;
+      margin-bottom: 18px;
+    }
+
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .badge {
+      font-size: 11px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.45);
+      background: rgba(15,23,42,0.9);
+      color: var(--text-muted);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+
+    .btn-primary,
+    .btn-ghost {
+      font-size: 14px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.15s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(120deg, #38bdf8, #0ea5e9);
+      color: #0b1120;
+      font-weight: 600;
+      box-shadow: 0 10px 35px rgba(59,130,246,0.6);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 45px rgba(59,130,246,0.75);
+    }
+
+    .btn-ghost {
+      border-color: rgba(148,163,184,0.5);
+      color: var(--text-muted);
+      background: rgba(15,23,42,0.9);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(15,23,42,1);
+    }
+
+    .hero-note {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .hero-aside {
+      padding: 18px 20px;
+      border-radius: 24px;
+      background: radial-gradient(circle at top right, rgba(56,189,248,0.16) 0, rgba(15,23,42,1) 52%);
+      border: 1px solid rgba(148,163,184,0.4);
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      font-size: 12px;
+    }
+
+    .stat-card {
+      padding: 10px;
+      border-radius: 14px;
+      background: rgba(15,23,42,0.98);
+      border: 1px solid rgba(31,41,55,1);
+    }
+
+    .stat-label {
+      color: var(--text-muted);
+      font-size: 11px;
+      margin-bottom: 4px;
+    }
+
+    .stat-value {
+      font-weight: 600;
+      font-size: 13px;
+    }
+
+    .pill-highlight {
+      font-size: 11px;
+      padding: 8px 10px;
+      border-radius: 14px;
+      background: var(--accent-soft);
+      color: #e0f2fe;
+      border: 1px solid rgba(56,189,248,0.4);
+    }
+
+    /* Sections */
+
+    section {
+      margin-top: 8px;
+      padding: 16px 18px 18px;
+      border-radius: 22px;
+      border: 1px solid rgba(148,163,184,0.3);
+      background: radial-gradient(circle at top, rgba(15,23,42,0.9) 0, rgba(2,6,23,1) 60%);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.7);
+    }
+
+    section + section {
+      margin-top: 22px;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .section-kicker {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* Projects */
+
+    .projects-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 14px;
+    }
+
+    .project-card {
+      padding: 12px 12px 13px;
+      border-radius: 18px;
+      background: linear-gradient(145deg, rgba(15,23,42,0.98), #020617);
+      border: 1px solid rgba(31,41,55,1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-tagline {
+      font-size: 11px;
+      color: var(--accent);
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+    }
+
+    .project-name {
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .project-meta {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-bottom: 7px;
+    }
+
+    .project-desc {
+      font-size: 13px;
+      color: #e5e7eb;
+      margin-bottom: 8px;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+
+    .project-tag {
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(55,65,81,1);
+      color: var(--text-muted);
+      background: rgba(15,23,42,0.95);
+    }
+
+    .project-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-size: 12px;
+    }
+
+    .project-links a {
+      text-decoration: none;
+      color: var(--accent);
+      padding: 3px 6px;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.9);
+      border: 1px solid rgba(56,189,248,0.3);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.15s;
+    }
+
+    .project-links a:hover {
+      border-color: rgba(56,189,248,0.8);
+      background: rgba(15,23,42,1);
+    }
+
+    /* About */
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.4fr);
+      gap: 18px;
+    }
+
+    @media (max-width: 900px) {
+      .about-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .about-text {
+      font-size: 14px;
+      color: #e5e7eb;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .about-text p {
+      margin-bottom: 4px;
+    }
+
+    .about-points {
+      list-style: disc;
+      padding-left: 16px;
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+
+    .about-card {
+      padding: 12px;
+      border-radius: 16px;
+      background: rgba(15,23,42,0.98);
+      border: 1px solid rgba(31,41,55,1);
+      font-size: 13px;
+      color: var(--text-muted);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .about-card-title {
+      font-size: 13px;
+      color: var(--text-main);
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .chip {
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.96);
+      border: 1px solid rgba(55,65,81,1);
+      color: var(--text-muted);
+    }
+
+    /* Contact */
+
+    .contact-layout {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      font-size: 14px;
+    }
+
+    .contact-main {
+      flex: 1 1 260px;
+    }
+
+    .contact-main p {
+      color: #e5e7eb;
+      margin-bottom: 8px;
+    }
+
+    .contact-details {
+      flex: 1 1 220px;
+      display: grid;
+      gap: 6px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .contact-details a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .contact-details a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      margin-top: 26px;
+      font-size: 11px;
+      color: var(--text-muted);
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="shell">
+      <header>
+        <div class="logo">
+          <div class="logo-mark">S</div>
+          <div class="logo-text">
+            <span>Shubham Dhamija</span>
+            <span>Data and Analytics | BI | AI</span>
+          </div>
+        </div>
+        <nav>
+          <a href="#projects">Projects</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </header>
+
+      <main>
+        <!-- Hero -->
+        <section class="hero">
+          <div class="hero-text">
+            <div class="hero-pill">
+              <span class="hero-pill-dot"></span>
+              <span>Open to data and analytics roles</span>
+            </div>
+            <h1 class="hero-title">
+              Turning data into useful stories for <span>real teams and products</span>.
+            </h1>
+            <p class="hero-subtitle">
+              Data and analytics professional with experience across BI, AI assisted apps and cloud. Recently completed Master of Data Science at RMIT.
+            </p>
+            <p class="hero-body">
+              I enjoy building practical tools such as AI powered newsletters and decision ready dashboards that help people understand what is happening and what to do next.
+            </p>
+
+            <div class="badges">
+              <span class="badge">Tableau and BI dashboards</span>
+              <span class="badge">Python and SQL</span>
+              <span class="badge">Cloud and data engineering</span>
+              <span class="badge">AI assisted products</span>
+            </div>
+
+            <div class="hero-actions">
+              <a class="btn-primary" href="#projects">
+                View selected projects
+              </a>
+              <a class="btn-ghost" href="#contact">
+                Get in touch
+              </a>
+            </div>
+            <p class="hero-note">
+              This site is a work in progress. I will keep adding more projects and resources.
+            </p>
+          </div>
+
+          <aside class="hero-aside">
+            <div class="stat-grid">
+              <div class="stat-card">
+                <div class="stat-label">Experience</div>
+                <div class="stat-value">6+ years in analytics and BI</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-label">Dashboards</div>
+                <div class="stat-value">100+ Tableau dashboards delivered</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-label">Recent work</div>
+                <div class="stat-value">AI newsletter generator for a consulting firm</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-label">Location</div>
+                <div class="stat-value">Based in Melbourne, Australia</div>
+              </div>
+            </div>
+
+            <div class="pill-highlight">
+              Currently focused on combining solid BI foundations with AI tools to ship useful, reliable products for business users.
+            </div>
+          </aside>
+        </section>
+
+        <!-- Projects -->
+        <section id="projects">
+          <div class="section-header">
+            <h2 class="section-title">Selected projects</h2>
+            <p class="section-kicker">
+              A few things I have built or contributed to recently.
+            </p>
+          </div>
+
+          <div class="projects-list">
+            <!-- Project 1 -->
+            <article class="project-card">
+              <div class="project-tagline">AI and data product</div>
+              <h3 class="project-name">AI powered newsletter generator</h3>
+              <p class="project-meta">
+                Industry project with Possible Digital (consulting firm in Germany)
+              </p>
+              <p class="project-desc">
+                Built a Streamlit app that ingests competitor PDFs and LinkedIn posts, scores them for relevance, stores metadata in MongoDB and generates multilingual newsletters with citations and a human in the loop review step.
+              </p>
+              <div class="project-tags">
+                <span class="project-tag">Python</span>
+                <span class="project-tag">Streamlit</span>
+                <span class="project-tag">MongoDB</span>
+                <span class="project-tag">OpenAI</span>
+                <span class="project-tag">Azure ready design</span>
+              </div>
+              <div class="project-links">
+                <!-- Replace # with your GitHub link when ready -->
+                <a href="#" target="_blank" rel="noreferrer">
+                  View code or demo
+                </a>
+              </div>
+            </article>
+
+            <!-- Project 2 -->
+            <article class="project-card">
+              <div class="project-tagline">Machine learning</div>
+              <h3 class="project-name">Home price prediction (HomeHop)</h3>
+              <p class="project-meta">
+                University project in predictive modelling
+              </p>
+              <p class="project-desc">
+                Developed a model to estimate house prices with feature engineering and model comparison. Evaluated performance with RMSE and MAE and produced clear visuals for non technical stakeholders.
+              </p>
+              <div class="project-tags">
+                <span class="project-tag">Python</span>
+                <span class="project-tag">scikit learn</span>
+                <span class="project-tag">Pandas</span>
+                <span class="project-tag">Visualisation</span>
+              </div>
+              <div class="project-links">
+                <a href="#" target="_blank" rel="noreferrer">
+                  Notebook and report
+                </a>
+              </div>
+            </article>
+
+            <!-- Project 3 -->
+            <article class="project-card">
+              <div class="project-tagline">Business intelligence</div>
+              <h3 class="project-name">Bank operations dashboards</h3>
+              <p class="project-meta">
+                Client work at Sopra Steria for a European bank
+              </p>
+              <p class="project-desc">
+                Delivered a suite of Tableau dashboards that track KPIs, SLAs and operations. Worked with stakeholders to define metrics, wrote SQL views and improved report turnaround time.
+              </p>
+              <div class="project-tags">
+                <span class="project-tag">Tableau</span>
+                <span class="project-tag">SQL</span>
+                <span class="project-tag">Requirements</span>
+                <span class="project-tag">Stakeholder engagement</span>
+              </div>
+              <div class="project-links">
+                <a href="#" target="_blank" rel="noreferrer">
+                  Summary and sample views
+                </a>
+              </div>
+            </article>
+
+            <!-- Placeholder project you can fill later -->
+            <article class="project-card">
+              <div class="project-tagline">Coming soon</div>
+              <h3 class="project-name">More projects</h3>
+              <p class="project-meta">
+                I will add more projects as I publish code and dashboards.
+              </p>
+              <p class="project-desc">
+                This space will include links to Tableau Public dashboards, data stories and any new AI or analytics experiments I build.
+              </p>
+              <div class="project-tags">
+                <span class="project-tag">Tableau Public</span>
+                <span class="project-tag">Data stories</span>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- About -->
+        <section id="about">
+          <div class="section-header">
+            <h2 class="section-title">About</h2>
+            <p class="section-kicker">
+              A quick summary of where I come from and what I like working on.
+            </p>
+          </div>
+
+          <div class="about-grid">
+            <div class="about-text">
+              <p>
+                I am a data and analytics professional with experience across BI development, analytics and AI assisted tooling. I recently completed a Master of Data Science at RMIT University in Melbourne.
+              </p>
+              <p>
+                Before moving to Australia I worked in analytics and BI roles at Yamaha Motor Solutions and Sopra Steria, delivering dashboards and data products for global clients.
+              </p>
+              <p>
+                I enjoy working close to the problem and collaborating with product managers, domain experts and engineers to build things that people actually use.
+              </p>
+              <ul class="about-points">
+                <li>Comfortable across the stack from data modelling and SQL to visual design and user training.</li>
+                <li>Particularly interested in AI assisted workflows that still keep humans in control.</li>
+                <li>Open to roles such as data analyst, BI engineer, analytics engineer or similar.</li>
+              </ul>
+            </div>
+
+            <div class="about-card">
+              <div>
+                <div class="about-card-title">Tools and skills</div>
+                <div class="chip-row">
+                  <span class="chip">Tableau</span>
+                  <span class="chip">SQL</span>
+                  <span class="chip">Python</span>
+                  <span class="chip">Pandas and NumPy</span>
+                  <span class="chip">Git and GitHub</span>
+                  <span class="chip">MongoDB</span>
+                  <span class="chip">AWS and Azure basics</span>
+                </div>
+              </div>
+
+              <div>
+                <div class="about-card-title">What I am looking for</div>
+                <p>
+                  Roles where I can combine my BI background with data science and AI skills, work with real users and keep learning.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Contact -->
+        <section id="contact">
+          <div class="section-header">
+            <h2 class="section-title">Contact</h2>
+            <p class="section-kicker">
+              The easiest ways to reach me.
+            </p>
+          </div>
+
+          <div class="contact-layout">
+            <div class="contact-main">
+              <p>
+                If you would like to chat about a role, a project or anything related to data and analytics, I am happy to hear from you.
+              </p>
+              <p>
+                Email is usually best. I am also active on LinkedIn and share updates there.
+              </p>
+            </div>
+
+            <div class="contact-details">
+              <!-- Replace with your real links -->
+              <div>
+                <strong>Email:</strong>
+                <br />
+                <a href="mailto:shubham9654@gmail.com">shubham9654@gmail.com</a>
+              </div>
+              <div>
+                <strong>LinkedIn:</strong>
+                <br />
+                <a href="https://www.linkedin.com/in/shubhamdhamija/" target="_blank" rel="noreferrer">
+                  linkedin.com/in/shubhamdhamija/
+                </a>
+              </div>
+              <div>
+                <strong>GitHub:</strong>
+                <br />
+                <a href="https://github.com/johnydm" target="_blank" rel="noreferrer">
+                  github.com/johnydm
+                </a>
+              </div>
+              <div>
+                <strong>Location:</strong>
+                <br />
+                Melbourne, Australia
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <footer>
+          © <span id="year"></span> Shubham Dhamija. All rights reserved.
+        </footer>
+      </main>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
