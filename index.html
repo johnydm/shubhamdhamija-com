@@ -2,22 +2,26 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Shubham Dhamija | Data and Analytics Portfolio</title>
+  <title>Shubham Dhamija | Data, Analytics and AI</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Portfolio of Shubham Dhamija, Data and Analytics professional and AI newsletter builder." />
+  <meta name="description" content="Portfolio of Shubham Dhamija, data and analytics professional specialising in BI, AI assisted products and cloud." />
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #050816;
-      --bg-alt: #0b1020;
-      --card: #111827;
+      --bg: #020617;
+      --bg-elevated: #020617;
+      --card: #020617;
       --accent: #38bdf8;
-      --accent-soft: rgba(56,189,248,0.15);
+      --accent2: #a855f7;
+      --accent-soft: rgba(56,189,248,0.12);
       --text-main: #e5e7eb;
       --text-muted: #9ca3af;
-      --border-subtle: #1f2933;
+      --border-subtle: rgba(148,163,184,0.35);
+      --radius-xl: 22px;
       --radius-lg: 18px;
-      --shadow-soft: 0 18px 40px rgba(0,0,0,0.65);
-      --max-width: 960px;
+      --shadow-soft: 0 24px 70px rgba(0,0,0,0.8);
+      --max-width: 1040px;
     }
 
     * {
@@ -27,16 +31,64 @@
     }
 
     body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top, #111827 0, #020617 45%, #000 100%);
+      min-height: 100vh;
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #020617 0, #000 55%, #020617 100%);
       color: var(--text-main);
-      line-height: 1.6;
       -webkit-font-smoothing: antialiased;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Background blobs and noise */
+    .bg-orb {
+      position: fixed;
+      border-radius: 999px;
+      filter: blur(44px);
+      opacity: 0.55;
+      z-index: -2;
+      pointer-events: none;
+      mix-blend-mode: screen;
+    }
+
+    .bg-orb--one {
+      width: 420px;
+      height: 420px;
+      top: -120px;
+      left: -80px;
+      background: radial-gradient(circle, #38bdf8 0, transparent 60%);
+    }
+
+    .bg-orb--two {
+      width: 380px;
+      height: 380px;
+      top: 140px;
+      right: -120px;
+      background: radial-gradient(circle, #a855f7 0, transparent 65%);
+    }
+
+    .bg-orb--three {
+      width: 420px;
+      height: 420px;
+      bottom: -140px;
+      left: 10%;
+      background: radial-gradient(circle, #22c55e 0, transparent 70%);
+      opacity: 0.35;
+    }
+
+    .noise-overlay {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.12;
+      z-index: -1;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='2' stitchTiles='noStitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.65'/%3E%3C/svg%3E");
+      mix-blend-mode: soft-light;
     }
 
     .page {
       min-height: 100vh;
-      padding: 32px 16px 64px;
+      padding: 20px 16px 60px;
       display: flex;
       justify-content: center;
     }
@@ -46,11 +98,24 @@
       max-width: var(--max-width);
     }
 
-    header {
+    /* Top nav */
+
+    .nav-shell {
+      position: sticky;
+      top: 8px;
+      z-index: 10;
+    }
+
+    .nav {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      margin-bottom: 32px;
+      justify-content: space-between;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: radial-gradient(circle at top left, rgba(15,23,42,0.97), rgba(15,23,42,0.86));
+      border: 1px solid rgba(148,163,184,0.35);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.75);
       gap: 16px;
     }
 
@@ -61,17 +126,28 @@
     }
 
     .logo-mark {
-      width: 36px;
-      height: 36px;
+      width: 34px;
+      height: 34px;
       border-radius: 999px;
-      background: radial-gradient(circle at 30% 20%, #38bdf8, #1d4ed8 55%, #020617 100%);
-      box-shadow: 0 0 24px rgba(56,189,248,0.8);
+      background: conic-gradient(from 210deg, #38bdf8, #a855f7, #22c55e, #38bdf8);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: 700;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .logo-mark::before {
+      content: "S";
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      font-weight: 600;
       font-size: 18px;
-      color: white;
+      color: #0b1120;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.96);
+      border: 1px solid rgba(15,23,42,0.9);
+      box-shadow: 0 0 12px rgba(15,23,42,0.9);
     }
 
     .logo-text {
@@ -79,147 +155,190 @@
       flex-direction: column;
     }
 
-    .logo-text span:first-child {
+    .logo-text-title {
+      font-family: "Space Grotesk", system-ui, sans-serif;
       font-weight: 600;
       letter-spacing: 0.04em;
-    }
-
-    .logo-text span:last-child {
-      font-size: 12px;
-      color: var(--text-muted);
-    }
-
-    nav {
-      display: flex;
-      gap: 16px;
       font-size: 14px;
     }
 
-    nav a {
+    .logo-text-sub {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 13px;
+    }
+
+    .nav-links a {
       color: var(--text-muted);
       text-decoration: none;
       padding: 4px 10px;
       border-radius: 999px;
       border: 1px solid transparent;
-      transition: all 0.15s ease;
+      transition: all 0.16s ease;
     }
 
-    nav a:hover {
-      color: var(--accent);
-      border-color: rgba(148,163,184,0.5);
-      background: rgba(15,23,42,0.9);
+    .nav-links a:hover {
+      color: #e5e7eb;
+      border-color: rgba(148,163,184,0.6);
+      background: radial-gradient(circle at top, rgba(15,23,42,1), rgba(15,23,42,0.9));
+    }
+
+    .nav-pill {
+      padding: 5px 11px;
+      border-radius: 999px;
+      border: 1px solid rgba(56,189,248,0.6);
+      color: #e0f2fe;
+      font-size: 11px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: radial-gradient(circle at top, rgba(15,23,42,1), rgba(15,23,42,0.96));
+    }
+
+    .nav-pill-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 12px rgba(34,197,94,0.95);
+    }
+
+    @media (max-width: 720px) {
+      .nav {
+        flex-wrap: wrap;
+        gap: 8px;
+        justify-content: center;
+      }
+      .nav-links {
+        order: 2;
+      }
+      .nav-pill {
+        order: 3;
+      }
     }
 
     main {
+      margin-top: 22px;
       display: flex;
       flex-direction: column;
-      gap: 32px;
+      gap: 26px;
     }
 
     /* Hero */
 
     .hero {
       display: grid;
-      grid-template-columns: minmax(0, 2fr) minmax(0, 1.4fr);
-      gap: 24px;
-      align-items: center;
+      grid-template-columns: minmax(0, 1.9fr) minmax(0, 1.4fr);
+      gap: 22px;
+      align-items: stretch;
+      position: relative;
     }
 
-    @media (max-width: 800px) {
+    @media (max-width: 880px) {
       .hero {
         grid-template-columns: minmax(0, 1fr);
       }
-      header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      nav {
-        align-self: flex-start;
-      }
     }
 
-    .hero-text {
-      padding: 20px 24px;
-      border-radius: 24px;
-      border: 1px solid rgba(148,163,184,0.3);
-      background: radial-gradient(circle at top left, rgba(56,189,248,0.08) 0, rgba(15,23,42,0.9) 45%, rgba(15,23,42,1) 100%);
+    .hero-left {
+      padding: 22px 22px 24px;
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border-subtle);
+      background: radial-gradient(circle at top left, rgba(15,23,42,1), rgba(15,23,42,0.96));
       box-shadow: var(--shadow-soft);
       position: relative;
       overflow: hidden;
+      isolation: isolate;
+      animation: fadeUp 0.6s ease-out forwards;
+      opacity: 0;
+      transform: translateY(10px);
     }
 
-    .hero-pill {
+    .hero-left::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top left, rgba(56,189,248,0.08), transparent 60%);
+      mix-blend-mode: soft-light;
+      pointer-events: none;
+    }
+
+    .hero-kicker {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      font-size: 12px;
-      padding: 4px 10px;
+      padding: 3px 9px;
       border-radius: 999px;
-      background: rgba(15,23,42,0.95);
-      border: 1px solid rgba(148,163,184,0.4);
-      color: var(--text-muted);
-      margin-bottom: 14px;
+      border: 1px solid rgba(148,163,184,0.6);
+      background: rgba(15,23,42,0.96);
     }
 
-    .hero-pill-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: #22c55e;
-      box-shadow: 0 0 12px rgba(34,197,94,0.9);
+    .hero-kicker span {
+      font-size: 11px;
     }
 
     .hero-title {
-      font-size: clamp(26px, 3vw, 32px);
-      font-weight: 700;
-      margin-bottom: 8px;
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      font-size: clamp(28px, 3.3vw, 34px);
+      line-height: 1.1;
+      margin-bottom: 10px;
     }
 
-    .hero-title span {
+    .hero-title-highlight {
       background: linear-gradient(120deg, #38bdf8, #a855f7);
       -webkit-background-clip: text;
       color: transparent;
     }
 
     .hero-subtitle {
-      font-size: 15px;
+      font-size: 14px;
       color: var(--text-muted);
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
 
     .hero-body {
       font-size: 14px;
-      color: #d1d5db;
+      color: #e5e7eb;
       margin-bottom: 18px;
+      max-width: 40rem;
     }
 
-    .badges {
+    .hero-badges {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
+      gap: 7px;
       margin-bottom: 18px;
     }
 
-    .badge {
+    .hero-badge {
       font-size: 11px;
-      padding: 4px 9px;
+      padding: 5px 9px;
       border-radius: 999px;
-      border: 1px solid rgba(148,163,184,0.45);
-      background: rgba(15,23,42,0.9);
+      border: 1px solid rgba(148,163,184,0.55);
       color: var(--text-muted);
+      background: rgba(15,23,42,0.94);
     }
 
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      margin-bottom: 6px;
+      margin-bottom: 10px;
     }
 
     .btn-primary,
     .btn-ghost {
-      font-size: 14px;
-      padding: 8px 16px;
+      font-size: 13px;
+      padding: 9px 15px;
       border-radius: 999px;
       border: 1px solid transparent;
       cursor: pointer;
@@ -227,114 +346,138 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      transition: all 0.15s ease;
+      transition: all 0.16s ease-out;
+      position: relative;
+      overflow: hidden;
     }
 
     .btn-primary {
       background: linear-gradient(120deg, #38bdf8, #0ea5e9);
       color: #0b1120;
       font-weight: 600;
-      box-shadow: 0 10px 35px rgba(59,130,246,0.6);
+      box-shadow: 0 14px 40px rgba(37,99,235,0.7);
     }
 
     .btn-primary:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 14px 45px rgba(59,130,246,0.75);
+      transform: translateY(-1px) scale(1.01);
+      box-shadow: 0 18px 55px rgba(37,99,235,0.85);
     }
 
     .btn-ghost {
-      border-color: rgba(148,163,184,0.5);
+      border-color: rgba(148,163,184,0.7);
       color: var(--text-muted);
-      background: rgba(15,23,42,0.9);
+      background: rgba(15,23,42,0.96);
     }
 
     .btn-ghost:hover {
       border-color: var(--accent);
-      color: var(--accent);
+      color: #e0f2fe;
       background: rgba(15,23,42,1);
+      transform: translateY(-1px);
     }
 
     .hero-note {
       font-size: 11px;
       color: var(--text-muted);
+      margin-top: 4px;
     }
 
-    .hero-aside {
-      padding: 18px 20px;
-      border-radius: 24px;
-      background: radial-gradient(circle at top right, rgba(56,189,248,0.16) 0, rgba(15,23,42,1) 52%);
-      border: 1px solid rgba(148,163,184,0.4);
+    .hero-right {
+      padding: 18px 18px 20px;
+      border-radius: var(--radius-xl);
+      border: 1px solid rgba(148,163,184,0.45);
+      background: radial-gradient(circle at top right, rgba(15,23,42,1), rgba(15,23,42,0.95));
       box-shadow: var(--shadow-soft);
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 14px;
+      animation: fadeUp 0.7s ease-out forwards;
+      opacity: 0;
+      transform: translateY(14px);
     }
 
     .stat-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 10px;
-      font-size: 12px;
     }
 
     .stat-card {
       padding: 10px;
-      border-radius: 14px;
-      background: rgba(15,23,42,0.98);
+      border-radius: 16px;
       border: 1px solid rgba(31,41,55,1);
+      background: radial-gradient(circle at top, rgba(15,23,42,1), rgba(15,23,42,0.96));
+      font-size: 11px;
     }
 
     .stat-label {
       color: var(--text-muted);
-      font-size: 11px;
-      margin-bottom: 4px;
+      margin-bottom: 3px;
     }
 
     .stat-value {
-      font-weight: 600;
       font-size: 13px;
+      font-weight: 600;
     }
 
-    .pill-highlight {
-      font-size: 11px;
-      padding: 8px 10px;
-      border-radius: 14px;
-      background: var(--accent-soft);
+    .hero-pill-highlight {
+      font-size: 12px;
+      padding: 9px 10px;
+      border-radius: 18px;
+      border: 1px solid rgba(56,189,248,0.6);
+      background: linear-gradient(135deg, rgba(15,23,42,0.98), rgba(8,47,73,0.96));
       color: #e0f2fe;
-      border: 1px solid rgba(56,189,248,0.4);
+    }
+
+    .hero-pill-highlight span {
+      color: #f9fafb;
     }
 
     /* Sections */
 
     section {
-      margin-top: 8px;
-      padding: 16px 18px 18px;
-      border-radius: 22px;
-      border: 1px solid rgba(148,163,184,0.3);
-      background: radial-gradient(circle at top, rgba(15,23,42,0.9) 0, rgba(2,6,23,1) 60%);
-      box-shadow: 0 16px 40px rgba(0,0,0,0.7);
+      border-radius: var(--radius-xl);
+      border: 1px solid rgba(148,163,184,0.4);
+      background: radial-gradient(circle at top, rgba(15,23,42,0.96), rgba(15,23,42,1));
+      box-shadow: var(--shadow-soft);
+      padding: 20px 20px 22px;
+      position: relative;
+      overflow: hidden;
     }
 
     section + section {
-      margin-top: 22px;
+      margin-top: 6px;
     }
 
     .section-header {
       display: flex;
-      justify-content: space-between;
       align-items: baseline;
-      gap: 12px;
+      justify-content: space-between;
+      gap: 10px;
       margin-bottom: 14px;
     }
 
     .section-title {
+      font-family: "Space Grotesk", system-ui, sans-serif;
       font-size: 18px;
       font-weight: 600;
     }
 
-    .section-kicker {
+    .section-subtitle {
       font-size: 12px;
       color: var(--text-muted);
+      max-width: 22rem;
+      text-align: right;
+    }
+
+    @media (max-width: 720px) {
+      .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .section-subtitle {
+        text-align: left;
+      }
     }
 
     /* Projects */
@@ -346,23 +489,45 @@
     }
 
     .project-card {
-      padding: 12px 12px 13px;
-      border-radius: 18px;
-      background: linear-gradient(145deg, rgba(15,23,42,0.98), #020617);
+      padding: 12px 12px 14px;
+      border-radius: var(--radius-lg);
       border: 1px solid rgba(31,41,55,1);
+      background: radial-gradient(circle at top left, rgba(15,23,42,1), #020617);
       position: relative;
       overflow: hidden;
+      transition: transform 0.16s ease-out, box-shadow 0.16s ease-out, border-color 0.16s ease-out;
+    }
+
+    .project-card::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background: radial-gradient(circle at top, rgba(56,189,248,0.09), transparent 60%);
+      opacity: 0;
+      transition: opacity 0.18s ease-out;
+      pointer-events: none;
+    }
+
+    .project-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 50px rgba(15,23,42,0.9);
+      border-color: rgba(56,189,248,0.6);
+    }
+
+    .project-card:hover::before {
+      opacity: 1;
     }
 
     .project-tagline {
-      font-size: 11px;
+      font-size: 10px;
       color: var(--accent);
-      margin-bottom: 4px;
       text-transform: uppercase;
-      letter-spacing: 0.09em;
+      letter-spacing: 0.16em;
+      margin-bottom: 4px;
     }
 
     .project-name {
+      font-size: 15px;
       font-weight: 600;
       margin-bottom: 4px;
     }
@@ -376,23 +541,23 @@
     .project-desc {
       font-size: 13px;
       color: #e5e7eb;
-      margin-bottom: 8px;
+      margin-bottom: 9px;
     }
 
     .project-tags {
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
-      margin-bottom: 10px;
+      margin-bottom: 9px;
     }
 
     .project-tag {
       font-size: 11px;
-      padding: 3px 8px;
+      padding: 3px 7px;
       border-radius: 999px;
+      background: rgba(15,23,42,0.95);
       border: 1px solid rgba(55,65,81,1);
       color: var(--text-muted);
-      background: rgba(15,23,42,0.95);
     }
 
     .project-links {
@@ -405,10 +570,10 @@
     .project-links a {
       text-decoration: none;
       color: var(--accent);
-      padding: 3px 6px;
+      padding: 3px 7px;
       border-radius: 999px;
-      background: rgba(15,23,42,0.9);
-      border: 1px solid rgba(56,189,248,0.3);
+      border: 1px solid rgba(56,189,248,0.5);
+      background: rgba(15,23,42,0.96);
       display: inline-flex;
       align-items: center;
       gap: 4px;
@@ -416,7 +581,7 @@
     }
 
     .project-links a:hover {
-      border-color: rgba(56,189,248,0.8);
+      border-color: rgba(56,189,248,0.9);
       background: rgba(15,23,42,1);
     }
 
@@ -424,11 +589,11 @@
 
     .about-grid {
       display: grid;
-      grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.4fr);
+      grid-template-columns: minmax(0, 1.9fr) minmax(0, 1.4fr);
       gap: 18px;
     }
 
-    @media (max-width: 900px) {
+    @media (max-width: 880px) {
       .about-grid {
         grid-template-columns: minmax(0, 1fr);
       }
@@ -443,32 +608,32 @@
     }
 
     .about-text p {
-      margin-bottom: 4px;
+      margin-bottom: 2px;
     }
 
     .about-points {
-      list-style: disc;
-      padding-left: 16px;
-      color: var(--text-muted);
+      margin-top: 6px;
+      padding-left: 18px;
       font-size: 13px;
+      color: var(--text-muted);
     }
 
-    .about-card {
+    .about-aside {
       padding: 12px;
-      border-radius: 16px;
-      background: rgba(15,23,42,0.98);
+      border-radius: var(--radius-lg);
       border: 1px solid rgba(31,41,55,1);
+      background: radial-gradient(circle at top, rgba(15,23,42,0.98), #020617);
       font-size: 13px;
       color: var(--text-muted);
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 8px;
     }
 
-    .about-card-title {
+    .about-aside-title {
       font-size: 13px;
-      color: var(--text-main);
       font-weight: 600;
+      color: var(--text-main);
       margin-bottom: 2px;
     }
 
@@ -480,33 +645,34 @@
 
     .chip {
       font-size: 11px;
-      padding: 3px 8px;
+      padding: 3px 7px;
       border-radius: 999px;
-      background: rgba(15,23,42,0.96);
       border: 1px solid rgba(55,65,81,1);
+      background: rgba(15,23,42,0.98);
       color: var(--text-muted);
     }
 
     /* Contact */
 
-    .contact-layout {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.2fr);
+      gap: 18px;
       font-size: 14px;
     }
 
-    .contact-main {
-      flex: 1 1 260px;
+    @media (max-width: 820px) {
+      .contact-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
     }
 
     .contact-main p {
-      color: #e5e7eb;
       margin-bottom: 8px;
+      color: #e5e7eb;
     }
 
     .contact-details {
-      flex: 1 1 220px;
       display: grid;
       gap: 6px;
       font-size: 13px;
@@ -523,101 +689,117 @@
     }
 
     footer {
-      margin-top: 26px;
+      margin-top: 20px;
       font-size: 11px;
       color: var(--text-muted);
       text-align: center;
     }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
   </style>
 </head>
 <body>
+  <div class="bg-orb bg-orb--one"></div>
+  <div class="bg-orb bg-orb--two"></div>
+  <div class="bg-orb bg-orb--three"></div>
+  <div class="noise-overlay"></div>
+
   <div class="page">
     <div class="shell">
-      <header>
-        <div class="logo">
-          <div class="logo-mark">S</div>
-          <div class="logo-text">
-            <span>Shubham Dhamija</span>
-            <span>Data and Analytics | BI | AI</span>
+      <!-- NAV -->
+      <div class="nav-shell">
+        <div class="nav">
+          <div class="logo">
+            <div class="logo-mark"></div>
+            <div class="logo-text">
+              <div class="logo-text-title">SHUBHAM DHAMIJA</div>
+              <div class="logo-text-sub">Data and analytics · BI · AI</div>
+            </div>
+          </div>
+          <div class="nav-links">
+            <a href="#projects">Projects</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+          </div>
+          <div class="nav-pill">
+            <span class="nav-pill-dot"></span>
+            <span>Open to data and analytics roles</span>
           </div>
         </div>
-        <nav>
-          <a href="#projects">Projects</a>
-          <a href="#about">About</a>
-          <a href="#contact">Contact</a>
-        </nav>
-      </header>
+      </div>
 
       <main>
-        <!-- Hero -->
-        <section class="hero">
-          <div class="hero-text">
-            <div class="hero-pill">
-              <span class="hero-pill-dot"></span>
-              <span>Open to data and analytics roles</span>
+        <!-- HERO -->
+        <section class="hero" aria-labelledby="hero-heading">
+          <div class="hero-left">
+            <div class="hero-kicker">
+              <span>Portfolio</span>
+              <span>Melbourne · Data and analytics</span>
             </div>
-            <h1 class="hero-title">
-              Turning data into useful stories for <span>real teams and products</span>.
+            <h1 class="hero-title" id="hero-heading">
+              I design and build <span class="hero-title-highlight">data and AI experiences</span> that people actually use.
             </h1>
             <p class="hero-subtitle">
-              Data and analytics professional with experience across BI, AI assisted apps and cloud. Recently completed Master of Data Science at RMIT.
+              Data and analytics professional combining BI, cloud and AI assisted tools. Recently completed a Master of Data Science at RMIT University.
             </p>
             <p class="hero-body">
-              I enjoy building practical tools such as AI powered newsletters and decision ready dashboards that help people understand what is happening and what to do next.
+              I enjoy taking messy data, business questions and ideas and turning them into dashboards, models and simple products that help people understand what is happening and what to do next.
             </p>
-
-            <div class="badges">
-              <span class="badge">Tableau and BI dashboards</span>
-              <span class="badge">Python and SQL</span>
-              <span class="badge">Cloud and data engineering</span>
-              <span class="badge">AI assisted products</span>
+            <div class="hero-badges">
+              <span class="hero-badge">Tableau and BI dashboards</span>
+              <span class="hero-badge">Python and SQL</span>
+              <span class="hero-badge">Cloud and data engineering</span>
+              <span class="hero-badge">AI assisted products</span>
             </div>
-
             <div class="hero-actions">
-              <a class="btn-primary" href="#projects">
-                View selected projects
-              </a>
-              <a class="btn-ghost" href="#contact">
-                Get in touch
-              </a>
+              <a class="btn-primary" href="#projects">View selected projects</a>
+              <a class="btn-ghost" href="#contact">Get in touch</a>
             </div>
             <p class="hero-note">
-              This site is a work in progress. I will keep adding more projects and resources.
+              This site is evolving as I publish more projects, dashboards and experiments.
             </p>
           </div>
 
-          <aside class="hero-aside">
+          <aside class="hero-right">
             <div class="stat-grid">
               <div class="stat-card">
                 <div class="stat-label">Experience</div>
                 <div class="stat-value">6+ years in analytics and BI</div>
               </div>
               <div class="stat-card">
-                <div class="stat-label">Dashboards</div>
-                <div class="stat-value">100+ Tableau dashboards delivered</div>
+                <div class="stat-label">Dashboards shipped</div>
+                <div class="stat-value">100+ Tableau dashboards</div>
               </div>
               <div class="stat-card">
                 <div class="stat-label">Recent work</div>
-                <div class="stat-value">AI newsletter generator for a consulting firm</div>
+                <div class="stat-value">AI newsletter generator for consulting</div>
               </div>
               <div class="stat-card">
                 <div class="stat-label">Location</div>
                 <div class="stat-value">Based in Melbourne, Australia</div>
               </div>
             </div>
-
-            <div class="pill-highlight">
-              Currently focused on combining solid BI foundations with AI tools to ship useful, reliable products for business users.
+            <div class="hero-pill-highlight">
+              I am particularly interested in <span>AI assisted workflows</span> that still keep humans in control while speeding up analysis and reporting.
             </div>
           </aside>
         </section>
 
-        <!-- Projects -->
-        <section id="projects">
+        <!-- PROJECTS -->
+        <section id="projects" aria-labelledby="projects-heading">
           <div class="section-header">
-            <h2 class="section-title">Selected projects</h2>
-            <p class="section-kicker">
-              A few things I have built or contributed to recently.
+            <h2 class="section-title" id="projects-heading">Selected projects</h2>
+            <p class="section-subtitle">
+              A few recent projects that show how I approach data, analytics and AI in practice.
             </p>
           </div>
 
@@ -627,7 +809,7 @@
               <div class="project-tagline">AI and data product</div>
               <h3 class="project-name">AI powered newsletter generator</h3>
               <p class="project-meta">
-                Industry project with Possible Digital (consulting firm in Germany)
+                Industry project with Possible Digital (Germany) · Streamlit app for public sector consulting
               </p>
               <p class="project-desc">
                 Built a Streamlit app that ingests competitor PDFs and LinkedIn posts, scores them for relevance, stores metadata in MongoDB and generates multilingual newsletters with citations and a human in the loop review step.
@@ -635,27 +817,24 @@
               <div class="project-tags">
                 <span class="project-tag">Python</span>
                 <span class="project-tag">Streamlit</span>
-                <span class="project-tag">MongoDB</span>
+                <span class="project-tag">MongoDB Atlas</span>
                 <span class="project-tag">OpenAI</span>
                 <span class="project-tag">Azure ready design</span>
               </div>
               <div class="project-links">
-                <!-- Replace # with your GitHub link when ready -->
-                <a href="#" target="_blank" rel="noreferrer">
-                  View code or demo
-                </a>
+                <a href="#" target="_blank" rel="noreferrer">View code / demo</a>
               </div>
             </article>
 
             <!-- Project 2 -->
             <article class="project-card">
               <div class="project-tagline">Machine learning</div>
-              <h3 class="project-name">Home price prediction (HomeHop)</h3>
+              <h3 class="project-name">HomeHop · House price prediction</h3>
               <p class="project-meta">
-                University project in predictive modelling
+                University project · Predictive modelling and model comparison
               </p>
               <p class="project-desc">
-                Developed a model to estimate house prices with feature engineering and model comparison. Evaluated performance with RMSE and MAE and produced clear visuals for non technical stakeholders.
+                Developed a model to estimate house prices with feature engineering and model selection. Compared algorithms with RMSE and MAE and used clear visuals to explain results to non technical stakeholders.
               </p>
               <div class="project-tags">
                 <span class="project-tag">Python</span>
@@ -664,9 +843,7 @@
                 <span class="project-tag">Visualisation</span>
               </div>
               <div class="project-links">
-                <a href="#" target="_blank" rel="noreferrer">
-                  Notebook and report
-                </a>
+                <a href="#" target="_blank" rel="noreferrer">Notebook and report</a>
               </div>
             </article>
 
@@ -675,33 +852,31 @@
               <div class="project-tagline">Business intelligence</div>
               <h3 class="project-name">Bank operations dashboards</h3>
               <p class="project-meta">
-                Client work at Sopra Steria for a European bank
+                Client work at Sopra Steria · European banking client
               </p>
               <p class="project-desc">
-                Delivered a suite of Tableau dashboards that track KPIs, SLAs and operations. Worked with stakeholders to define metrics, wrote SQL views and improved report turnaround time.
+                Delivered a suite of Tableau dashboards tracking KPIs, SLAs and operational performance. Partnered with stakeholders to define metrics, wrote SQL views and reduced manual reporting effort.
               </p>
               <div class="project-tags">
                 <span class="project-tag">Tableau</span>
                 <span class="project-tag">SQL</span>
-                <span class="project-tag">Requirements</span>
                 <span class="project-tag">Stakeholder engagement</span>
+                <span class="project-tag">Requirements</span>
               </div>
               <div class="project-links">
-                <a href="#" target="_blank" rel="noreferrer">
-                  Summary and sample views
-                </a>
+                <a href="#" target="_blank" rel="noreferrer">Summary and sample layouts</a>
               </div>
             </article>
 
-            <!-- Placeholder project you can fill later -->
+            <!-- Project 4 placeholder -->
             <article class="project-card">
               <div class="project-tagline">Coming soon</div>
               <h3 class="project-name">More projects</h3>
               <p class="project-meta">
-                I will add more projects as I publish code and dashboards.
+                Additional dashboards, experiments and case studies
               </p>
               <p class="project-desc">
-                This space will include links to Tableau Public dashboards, data stories and any new AI or analytics experiments I build.
+                I will keep adding links to Tableau Public dashboards, data stories and new AI or analytics experiments as I publish them.
               </p>
               <div class="project-tags">
                 <span class="project-tag">Tableau Public</span>
@@ -711,12 +886,12 @@
           </div>
         </section>
 
-        <!-- About -->
-        <section id="about">
+        <!-- ABOUT -->
+        <section id="about" aria-labelledby="about-heading">
           <div class="section-header">
-            <h2 class="section-title">About</h2>
-            <p class="section-kicker">
-              A quick summary of where I come from and what I like working on.
+            <h2 class="section-title" id="about-heading">About</h2>
+            <p class="section-subtitle">
+              A quick snapshot of where I come from, how I work and what I am looking for next.
             </p>
           </div>
 
@@ -726,85 +901,78 @@
                 I am a data and analytics professional with experience across BI development, analytics and AI assisted tooling. I recently completed a Master of Data Science at RMIT University in Melbourne.
               </p>
               <p>
-                Before moving to Australia I worked in analytics and BI roles at Yamaha Motor Solutions and Sopra Steria, delivering dashboards and data products for global clients.
+                Before moving to Australia, I worked in analytics and BI roles at Yamaha Motor Solutions and Sopra Steria, delivering dashboards and data products for global clients in banking and other industries.
               </p>
               <p>
-                I enjoy working close to the problem and collaborating with product managers, domain experts and engineers to build things that people actually use.
+                I like working close to the problem and collaborating with product managers, domain experts and engineers to build things that are simple to use and trusted by the people who rely on them.
               </p>
               <ul class="about-points">
-                <li>Comfortable across the stack from data modelling and SQL to visual design and user training.</li>
-                <li>Particularly interested in AI assisted workflows that still keep humans in control.</li>
+                <li>Comfortable moving between data modelling, SQL, visual design and user training.</li>
+                <li>Enjoy pairing solid BI foundations with newer AI tools where they genuinely help.</li>
                 <li>Open to roles such as data analyst, BI engineer, analytics engineer or similar.</li>
               </ul>
             </div>
 
-            <div class="about-card">
+            <aside class="about-aside">
               <div>
-                <div class="about-card-title">Tools and skills</div>
+                <div class="about-aside-title">Tools and skills</div>
                 <div class="chip-row">
                   <span class="chip">Tableau</span>
                   <span class="chip">SQL</span>
                   <span class="chip">Python</span>
                   <span class="chip">Pandas and NumPy</span>
-                  <span class="chip">Git and GitHub</span>
                   <span class="chip">MongoDB</span>
+                  <span class="chip">Git and GitHub</span>
                   <span class="chip">AWS and Azure basics</span>
                 </div>
               </div>
-
               <div>
-                <div class="about-card-title">What I am looking for</div>
+                <div class="about-aside-title">What I am looking for</div>
                 <p>
-                  Roles where I can combine my BI background with data science and AI skills, work with real users and keep learning.
+                  Roles where I can combine BI experience with data science and AI skills, work with real users and keep learning in a strong team.
                 </p>
               </div>
-            </div>
+            </aside>
           </div>
         </section>
 
-        <!-- Contact -->
-        <section id="contact">
+        <!-- CONTACT -->
+        <section id="contact" aria-labelledby="contact-heading">
           <div class="section-header">
-            <h2 class="section-title">Contact</h2>
-            <p class="section-kicker">
-              The easiest ways to reach me.
+            <h2 class="section-title" id="contact-heading">Contact</h2>
+            <p class="section-subtitle">
+              The easiest ways to reach me for roles, projects or collaborations.
             </p>
           </div>
 
-          <div class="contact-layout">
+          <div class="contact-grid">
             <div class="contact-main">
               <p>
                 If you would like to chat about a role, a project or anything related to data and analytics, I am happy to hear from you.
               </p>
               <p>
-                Email is usually best. I am also active on LinkedIn and share updates there.
+                Email is usually best. I also share updates about projects, learning and events on LinkedIn.
               </p>
             </div>
-
             <div class="contact-details">
-              <!-- Replace with your real links -->
               <div>
-                <strong>Email:</strong>
-                <br />
+                <strong>Email</strong><br />
                 <a href="mailto:shubham9654@gmail.com">shubham9654@gmail.com</a>
               </div>
               <div>
-                <strong>LinkedIn:</strong>
-                <br />
+                <strong>LinkedIn</strong><br />
                 <a href="https://www.linkedin.com/in/shubhamdhamija/" target="_blank" rel="noreferrer">
                   linkedin.com/in/shubhamdhamija/
                 </a>
               </div>
               <div>
-                <strong>GitHub:</strong>
-                <br />
+                <strong>GitHub</strong><br />
                 <a href="https://github.com/johnydm" target="_blank" rel="noreferrer">
                   github.com/johnydm
                 </a>
               </div>
               <div>
-                <strong>Location:</strong>
-                <br />
+                <strong>Location</strong><br />
                 Melbourne, Australia
               </div>
             </div>
